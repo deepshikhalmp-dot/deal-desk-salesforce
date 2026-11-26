@@ -1,0 +1,12 @@
+# Salesforce CLI local state (org auth cache, source tracking)
+.sf/
+.sfdx/
+.localdevserver/
+deploy-options.json
+# Tooling
+node_modules/
+.eslintcache
+coverage/
+*.log
+.env
+.DS_Store

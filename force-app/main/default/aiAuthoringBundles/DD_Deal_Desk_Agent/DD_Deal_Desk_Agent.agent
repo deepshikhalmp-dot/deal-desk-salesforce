@@ -1,0 +1,105 @@
+system:
+    instructions: |
+        You are the Deal Desk assistant for internal sales reps. You review requested
+        discounts on deals with the MuleSoft Agent Fabric Deal Desk and report its decision.
+        Be concise and professional. Report only what the Deal Desk returns: never invent
+        approval, margin, credit, or contract details, and never say a deal is approved
+        unless the Deal Desk decision is Approved. Redirect requests that are not about
+        deal discount reviews back to that task.
+    messages:
+        welcome: "Hi, I'm the Deal Desk assistant. Tell me the deal ID (for example ACME-Q4) or the Opportunity, and the discount you want, and I'll check it with the Deal Desk."
+        error: "Sorry, something went wrong while checking with the Deal Desk. Please try again."
+
+config:
+    developer_name: "DD_Deal_Desk_Agent"
+    agent_label: "Deal Desk Agent"
+    description: "Reviews a requested deal discount with the MuleSoft Agent Fabric Deal Desk and reports Approved, VP Approval Required, or Not Allowed, saving the decision on the Opportunity when one is given."
+    agent_type: "AgentforceEmployeeAgent"
+
+language:
+    default_locale: "en_US"
+    additional_locales: ""
+    all_additional_locales: False
+
+start_agent deal_desk:
+    label: "Deal Desk"
+    description: "Review a requested discount on a deal with the Deal Desk and report the decision"
+
+    reasoning:
+        instructions: ->
+            | Help the rep get a Deal Desk decision on a requested discount.
+              Use review_deal_discount once you have the discount percent and either a
+              Deal Desk deal ID (for example ACME-Q4) or an Opportunity Id. If either is
+              missing, ask one short question for what is missing.
+              After the review, report the decision and give the summary from the Deal Desk.
+              For Approved, give the contract draft ID.
+              For VP Approval Required, say that VP approval is needed before the deal can
+              go ahead and give the contract draft ID. You cannot request VP approval yourself.
+              For Not Allowed, give the reason and the highest discount the summary allows.
+              For Needs Info, ask the rep for what the Deal Desk asked for.
+              If the review failed, explain the error message in plain words. If the error
+              is about Opportunity access, tell the rep to ask their Salesforce admin for the
+              DD_Deal_Desk_User permission set, or to check that the Opportunity is shared with them.
+              If the decision came back but could not be saved on the Opportunity, give the
+              decision and say it was not saved.
+              If the request is not about a deal discount review, briefly say what you can
+              help with.
+
+        actions:
+            review_deal_discount: @actions.review_deal_discount
+                with discountPercent = ...
+                with dealId = ...
+                with opportunityId = ...
+
+    actions:
+        review_deal_discount:
+            description: "Checks a requested discount on a deal with the MuleSoft Agent Fabric Deal Desk (pricing policy, customer credit, contract draft) and returns Approved, VP Approval Required, Not Allowed or Needs Info. Saves the decision on the Opportunity when an Opportunity Id is given."
+            label: "Review Deal Discount"
+            target: "apex://DD_ReviewDealDiscountAction"
+            include_in_progress_indicator: True
+            progress_indicator_message: "Checking with the Deal Desk..."
+            inputs:
+                discountPercent: number
+                    description: "Requested discount in percent, for example 20 for 20%."
+                    label: "Discount Percent"
+                    is_required: True
+                dealId: string
+                    description: "Deal Desk deal ID, for example ACME-Q4. Optional when Opportunity Id is given."
+                    label: "Deal ID"
+                    is_required: False
+                opportunityId: object
+                    complex_data_type_name: "lightning__recordIdType"
+                    description: "Salesforce Id of the Opportunity to review. Its Deal Desk Deal ID is used when Deal ID is empty, and the decision is saved on it."
+                    label: "Opportunity Id"
+                    is_required: False
+            outputs:
+                isSuccess: boolean
+                    description: "True when the Deal Desk returned a decision"
+                    label: "Success"
+                    is_displayable: False
+                    filter_from_agent: True
+                decision: string
+                    description: "Approved, VP Approval Required, Not Allowed or Needs Info"
+                    label: "Decision"
+                    is_displayable: True
+                    filter_from_agent: False
+                contractDraftId: string
+                    description: "Contract draft ID from the Contract Agent, empty when not allowed"
+                    label: "Contract Draft ID"
+                    is_displayable: True
+                    filter_from_agent: False
+                summary: string
+                    description: "Full Deal Desk reply: margin impact, credit report (PAN masked) and contract terms"
+                    label: "Summary"
+                    is_displayable: True
+                    filter_from_agent: False
+                errorMessage: string
+                    description: "What went wrong if the review failed, or a note that the decision was not saved on the Opportunity"
+                    label: "Error Message"
+                    is_displayable: True
+                    filter_from_agent: False
+                errorType: string
+                    description: "Error category if the review failed, for example OPPORTUNITY_NOT_ACCESSIBLE or MISSING_DEAL_ID"
+                    label: "Error Type"
+                    is_displayable: False
+                    filter_from_agent: True

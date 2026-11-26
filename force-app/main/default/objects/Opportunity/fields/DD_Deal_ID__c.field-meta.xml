@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DD_Deal_ID__c</fullName>
+    <label>Deal Desk Deal ID</label>
+    <description>Deal identifier used by the Agent Fabric Deal Desk broker and its Pricing, Credit and Contract agents (for example ACME-Q4).</description>
+    <inlineHelpText>The Deal Desk ID of this deal, for example ACME-Q4. The Deal Desk agent sends this ID to the pricing, credit and contract systems.</inlineHelpText>
+    <type>Text</type>
+    <length>20</length>
+    <externalId>true</externalId>
+    <unique>false</unique>
+    <required>false</required>
+</CustomField>

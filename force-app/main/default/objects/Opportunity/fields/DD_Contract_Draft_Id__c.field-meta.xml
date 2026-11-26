@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DD_Contract_Draft_Id__c</fullName>
+    <label>Deal Desk Contract Draft ID</label>
+    <description>Contract draft ID created by the Contract Agent through the Deal Desk broker (for example CTR-ACME-Q4-20).</description>
+    <inlineHelpText>The contract draft prepared for this deal. Empty when the discount was not allowed.</inlineHelpText>
+    <type>Text</type>
+    <length>40</length>
+    <externalId>false</externalId>
+    <unique>false</unique>
+    <required>false</required>
+</CustomField>

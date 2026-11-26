@@ -1,0 +1,54 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "contractDraftId" : {
+      "title" : "Contract Draft ID",
+      "description" : "Contract draft ID from the Contract Agent, empty when not allowed",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "decision" : {
+      "title" : "Decision",
+      "description" : "Approved, VP Approval Required, Not Allowed or Needs Info",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "errorMessage" : {
+      "title" : "Error Message",
+      "description" : "What went wrong if the review failed, or a note that the decision was not saved on the Opportunity",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "errorType" : {
+      "title" : "Error Type",
+      "description" : "Error category if the review failed, for example OPPORTUNITY_NOT_ACCESSIBLE or MISSING_DEAL_ID",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : false
+    },
+    "isSuccess" : {
+      "title" : "Success",
+      "description" : "True when the Deal Desk returned a decision",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : false
+    },
+    "summary" : {
+      "title" : "Summary",
+      "description" : "Full Deal Desk reply: margin impact, credit report (PAN masked) and contract terms",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

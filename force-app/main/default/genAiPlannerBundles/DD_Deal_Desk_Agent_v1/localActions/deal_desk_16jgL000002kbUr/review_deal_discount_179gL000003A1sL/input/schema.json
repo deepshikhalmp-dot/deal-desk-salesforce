@@ -1,0 +1,28 @@
+{
+  "required" : [ "discountPercent" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "dealId" : {
+      "title" : "Deal ID",
+      "description" : "Deal Desk deal ID, for example ACME-Q4. Optional when Opportunity Id is given.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "discountPercent" : {
+      "title" : "Discount Percent",
+      "description" : "Requested discount in percent, for example 20 for 20%.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "opportunityId" : {
+      "title" : "Opportunity Id",
+      "description" : "Salesforce Id of the Opportunity to review. Its Deal Desk Deal ID is used when Deal ID is empty, and the decision is saved on it.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

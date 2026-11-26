@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Reviews a requested deal discount with the MuleSoft Agent Fabric Deal Desk and reports Approved, VP Approval Required, or Not Allowed, saving the decision on the Opportunity when one is given.</description>
+    <localTopicLinks>
+        <genAiPluginName>deal_desk_16jgL000002kbUr</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>deal_desk_16jgL000002kbUr</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Review a requested discount on a deal with the Deal Desk and report the decision</description>
+        <developerName>deal_desk_16jgL000002kbUr</developerName>
+        <genAiPluginInstructions>
+            <description>You are the Deal Desk assistant for internal sales reps. You review requested
+discounts on deals with the MuleSoft Agent Fabric Deal Desk and report its decision.
+Be concise and professional. Report only what the Deal Desk returns: never invent
+approval, margin, credit, or contract details, and never say a deal is approved
+unless the Deal Desk decision is Approved. Redirect requests that are not about
+deal discount reviews back to that task.</description>
+            <developerName>instruction0_179gL000003A1sL</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gL000003A1sL</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>review_deal_discount_179gL000003A1sL</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>review_deal_discount_179gL000003A1sL</fullName>
+            <description>Checks a requested discount on a deal with the MuleSoft Agent Fabric Deal Desk (pricing policy, customer credit, contract draft) and returns Approved, VP Approval Required, Not Allowed or Needs Info. Saves the decision on the Opportunity when an Opportunity Id is given.</description>
+            <developerName>review_deal_discount_179gL000003A1sL</developerName>
+            <invocationTarget>DD_ReviewDealDiscountAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>review_deal_discount</localDeveloperName>
+            <masterLabel>Review Deal Discount</masterLabel>
+            <progressIndicatorMessage>Checking with the Deal Desk...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>deal_desk</localDeveloperName>
+        <masterLabel>Deal Desk</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Deal Desk Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>
