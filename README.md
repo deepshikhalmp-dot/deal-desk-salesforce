@@ -37,7 +37,7 @@ All metadata is under `force-app/main/default/`.
 | Agentforce employee agent | `DD_Deal_Desk_Agent` (`aiAuthoringBundles/`) | Agent Script agent with one action. It asks for missing inputs, reports the decision as returned and redirects off-topic requests. The design is in [`DD_Deal_Desk_Agent-AgentSpec.md`](DD_Deal_Desk_Agent-AgentSpec.md) |
 | Invocable Apex | `DD_ReviewDealDiscountAction` | "Review Deal Discount" action. Inputs: discount %, plus a deal ID or an Opportunity Id. It saves the result on the Opportunity in **user mode** and returns a clear error when the user lacks access |
 | Apex service | `DD_DealDeskBrokerService` | Builds the A2A JSON-RPC `SendMessage` call to the broker and parses `DEAL DESK DECISION: …` and the `CTR-…` contract ID |
-| Apex tests | `DD_ReviewDealDiscountActionTest`, `DD_DealDeskBrokerServiceTest`, `DD_DealDeskBrokerMock`, `DD_TestDataFactory` | 20 tests with an HTTP callout mock. They run as a test user, with and without the permission set |
+| Apex tests | `DD_ReviewDealDiscountActionTest`, `DD_DealDeskBrokerServiceTest`, `DD_DealDeskBrokerMock`, `DD_TestDataFactory` | 19 tests with an HTTP callout mock. They run as a test user, with and without the permission set |
 | Opportunity fields | `DD_Deal_ID__c`, `DD_Requested_Discount__c`, `DD_Decision__c`, `DD_Contract_Draft_Id__c`, `DD_Deal_Desk_Summary__c` | The deal mapping and the saved decision |
 | Lightning app | `DD_Deal_Desk` | "Deal Desk" app: Home, Opportunities, Accounts, Contacts, Reports, Dashboards |
 | Record page | `DD_Deal_Desk_Opportunity_Record_Page` | Opportunity page in the app that shows the Deal Desk fields |
@@ -45,6 +45,12 @@ All metadata is under `force-app/main/default/`.
 | Permission set | `DD_Deal_Desk_User` | Gives reps the app, the agent, the Apex class, Opportunity read/edit and access to the DD fields |
 | Remote site | `DD_Agent_Fabric_Broker` | Allows the callout to the Agent Fabric gateway |
 | Published agent metadata | `bots/`, `genAiPlannerBundles/` | Pulled back into the project by `sf agent publish`. **Do not deploy these by hand** |
+
+## Docs
+
+- [SETUP.md](SETUP.md): set up a new machine, either for the demo only or for development (includes corporate laptop tips).
+- [docs/TECH_DESIGN.md](docs/TECH_DESIGN.md): technical design covering the architecture, the end-to-end flow, components, error handling, security, testing and known limitations.
+- [DD_Deal_Desk_Agent-AgentSpec.md](DD_Deal_Desk_Agent-AgentSpec.md): the agent's design spec.
 
 ## Setup
 
