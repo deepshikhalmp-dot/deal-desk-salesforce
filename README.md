@@ -50,6 +50,7 @@ All metadata is under `force-app/main/default/`.
 
 - [SETUP.md](SETUP.md): set up a new machine, either for the demo only or for development (includes corporate laptop tips).
 - [docs/TECH_DESIGN.md](docs/TECH_DESIGN.md): technical design covering the architecture, the end-to-end flow, components, error handling, security, testing and known limitations.
+- [docs/ete-guide](docs/ete-guide/README.md): end-to-end functional test guide, screen by screen with screenshots, explaining why each result happens.
 - [DD_Deal_Desk_Agent-AgentSpec.md](DD_Deal_Desk_Agent-AgentSpec.md): the agent's design spec.
 
 ## Setup
